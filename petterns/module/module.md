@@ -95,3 +95,93 @@ myModule.reset();
 * 真にprivateな関数を自由に持てる。
 * 公開された関数に名前が付けられているため、エラーが発生した際のスタックが見やすい。
 * （必要があれば）環境に応じて異なる関数を返すことが出来る。
+
+
+## モジュールパターンのバリエーション
+
+### インポートミックスイン
+
+このバリエーションは、jQueryなどのグローバル変数をモジュール内にて別名でインポートしたい場合に利用する。
+
+````
+var myModule = (function(jQ, _){
+    
+    function privateMethod1(){
+        jQuery('#hoge').html();
+    }
+    
+    function privateMethod2(){
+        console.log(_.min([100, 1, 1000]));
+    }
+    
+    return {
+        publicMethod: function(){
+            privateMethod2();
+        }
+    };
+    
+})($, _);
+
+//Usage
+myModule.publicMethod();
+````
+
+### エクスポート
+
+````
+var myModule = (function(){
+    
+    var module = {},
+        privateVal = 'private';
+        
+    function privateMethod(){
+        
+    }
+    
+    //公開I/F
+    module.publicVal = 'public';
+    module.publicMethod = function(){
+        return privateVal;
+    };
+    
+    //エクスポート
+    return module;
+    
+})();
+
+//Usage
+
+myModule.publicVal;
+myModule.publicMethod();
+````
+
+
+### jQuery
+
+この例では、新規でモジュールが作成された場合に、 `coreModule` が新しく定義され、自動的に `init` 関数が `document.ready` にバインドされる。
+
+モジュール間で共通のイベントを定義したい場合に使うと良い。
+
+````
+function coreModule(module) {
+    
+    $(function(module){
+        if(module.init){
+            module.init();
+        }
+    });
+    
+    return module;
+}
+
+//Usage
+var myModule = coreModule(function(){
+    
+    return {
+        init: function(){
+            return 'myModule init';
+        }  
+    };
+});
+
+````

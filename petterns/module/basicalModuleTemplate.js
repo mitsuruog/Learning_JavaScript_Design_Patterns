@@ -11,12 +11,12 @@ var namespace = (function() {
 	
 	};
 	
-	//ここから公開I/F‌
-	return {‌
+	//ここから公開I/F
+	return {
 	
 		publicVar: 'public',
 		
-		publicMethod: function publicMethod() {
+		publicMethod: function() {
 		
 			privateVar++;
 		
@@ -27,3 +27,7 @@ var namespace = (function() {
 	};
 
 })();
+
+//Usage
+namespace.publicVar;
+namespace.publicMethod();

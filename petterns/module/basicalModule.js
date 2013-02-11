@@ -4,11 +4,11 @@ var myModule = (function(){
 	
 	return {
 		
-		increment: function increment() {
+		increment: function() {
 			return counter++;	
 		},
 		
-		reset: function reset() {
+		reset: function() {
 			console.log('reset counter');
 			counter = 0;
 		}
@@ -16,8 +16,7 @@ var myModule = (function(){
 
 })();
 
+//Usage
 myModule.increment();
-
 myModule.increment();
-
 myModule.reset();

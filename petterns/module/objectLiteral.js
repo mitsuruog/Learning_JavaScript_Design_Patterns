@@ -17,7 +17,8 @@ var myObject = {
 	}
 };
 
-‌myObject.someProprety;
+//Usage
+myObject.someProprety;
 
 myObject.someFunction();
 

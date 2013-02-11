@@ -11,18 +11,18 @@ var basketModule = (function(){
 	//ここから公開I/F
 	return {
 		
-		addItem: function addItem(values) {
+		addItem: function(values) {
 			basket.push(values);
 		},
 		
-		getItemCount: function getItemCount() {
+		getItemCount: function() {
 			return basket.length;
 		},
 		
-		//private関数を呼び出してごにょごにょ‌
+		//private関数を呼び出してごにょごにょ
 		doSomething: somePrivateMethod,
 		
-		getTotal: function getTotal() {
+		getTotal: function() {
 			var count = this.getItemCount(),
 				total = 0;
 				

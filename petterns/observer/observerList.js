@@ -1,7 +1,7 @@
-var ObserverList, extend;
+var ObserverList, Extend;
 
 ObserverList= function(){
-    this.observerList = {};
+    this.observerList = [];
 };
 
 ObserverList.prototype.Add = function(obj){
@@ -64,7 +64,7 @@ ObserverList.prototype.RemoveAt = function(index){
   
 };
 
-extend = function(extension, obj){
+Extend = function(extension, obj){
     
     for(var key in extension){
         obj[key] = extension[key];
